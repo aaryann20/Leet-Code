@@ -1,29 +1,19 @@
 class Solution {
-    public static int max(int []arr,int a){
-        // if(a==arr.length-2){
-            // return arr[arr.length-1];//can be fixed after fixing last bug
-        // }
-        if(a==arr.length-1){
-            return -1;
-        }
-        int max = Integer.MIN_VALUE;
-        for(int i = a+1;i<arr.length;i++){
-            if(arr[i]>max){
-                max = arr[i];
-                a=a+1;
-            }
-        }
-        return max;
-    }
     public int[] replaceElements(int[] arr) {
-        int arro[] = {-1};
-        if(arr.length==1){
-            return arro;
+        int n = arr.length;
+        int[] result = new int[n];
+        Arrays.fill(result, -1); // Initialize the result array with -1
+        
+        if (n == 0) return result; // Edge case for empty array
+        
+        for (int i = 0; i < n - 1; i++) {
+            int maxRight = arr[i + 1];
+            for (int j = i + 2; j < n; j++) {
+                maxRight = Math.max(maxRight, arr[j]);
+            }
+            result[i] = maxRight;
         }
-        int [] array = new int[arr.length];
-        for(int j = 0 ;j<arr.length;j++){
-            array[j]=max(arr,j);
-        }
-        return array;
+        
+        return result;
     }
 }
