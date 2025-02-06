@@ -14,7 +14,7 @@ public class Solution {
         if (head == null) {
             return false;
         }
-        if (head == null) {
+        if (head.next == null) {
             return false;
         }
         ListNode slow = head;
