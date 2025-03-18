@@ -14,7 +14,7 @@ class Solution {
                 st.pop();
             }
         }
-        if(st.size()>0) return false;
-        else return true;
+        return st.isEmpty();
+        
     }
 }
