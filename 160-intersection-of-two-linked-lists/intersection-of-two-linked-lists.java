@@ -10,48 +10,50 @@
  * }
  */
 public class Solution {
+    
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        if (headA == null || headB == null) return null;
+        if(headA==null || headB == null);
+        ListNode temp1 = headA;
+        ListNode temp2 = headB;
+        int countA= 0;
+        while(temp1!= null){
+            temp1 = temp1.next;
+            countA++;
+        }
+        int countB= 0;
+        while(temp2!= null){
+            temp2 = temp2.next;
+            countB++;
+        }
+        temp1 = headA;
+        temp2 = headB;
+
         
-        ListNode tempA = headA;
-        ListNode tempB = headB;
-        int lengthA = 0, lengthB = 0;
+        
 
-        // Calculate the length of list A
-        while (tempA != null) {
-            lengthA++;
-            tempA = tempA.next;
-        }
+        // Major part of thr code 
 
-        // Calculate the length of list B
-        tempB = headB;
-        while (tempB != null) {
-            lengthB++;
-            tempB = tempB.next;
-        }
-
-        // Reset pointers
-        tempA = headA;
-        tempB = headB;
-
-        // Adjust the longer list to the same starting position
-        int diff = Math.abs(lengthA - lengthB);
-        if (lengthA > lengthB) {
+          int diff = Math.abs(countA - countB);
+        if (countA > countB) {
             for (int i = 0; i < diff; i++) {
-                tempA = tempA.next;
+                temp1 = temp1.next;
             }
         } else {
             for (int i = 0; i < diff; i++) {
-                tempB = tempB.next;
+                temp2 = temp2.next;
             }
         }
-
-        // Move both pointers together until they meet
-        while (tempA != tempB) {
-            tempA = tempA.next;
-            tempB = tempB.next;
+        
+        // Now traverse both lists together to find the intersection
+        while (temp1 != null && temp2 != null) {
+            if (temp1 == temp2) {
+                return temp1;
+            }
+            temp1 = temp1.next;
+            temp2 = temp2.next;
         }
-
-        return tempA; // This will be the intersection node or null if no intersection
+        
+        return null;
+    
     }
 }
