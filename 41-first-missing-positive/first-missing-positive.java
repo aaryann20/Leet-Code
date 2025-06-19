@@ -1,19 +1,20 @@
 class Solution {
     public int firstMissingPositive(int[] nums) {
-        HashSet<Integer> st = new HashSet<>();
+        int n = nums.length;
+        boolean[] present = new boolean[n + 1]; // Defaults to false
 
-        for(int i = 0;i<nums.length;i++){
-                if(nums[i]>0){
-                    st.add(nums[i]);
-                }
-        }
-
-        int missing = 1;
-        for(int j : st){
-            if(st.contains(missing)){
-                missing++;
+        for (int num : nums) {
+            if (num > 0 && num <= n) {
+                present[num] = true;
             }
         }
-        return missing;
+
+        for (int i = 1; i <= n; i++) {
+            if (!present[i]) {
+                return i;
+            }
+        }
+
+        return n + 1;
     }
 }
